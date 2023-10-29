@@ -38,6 +38,7 @@ public class Board extends JFrame {
 
                 if(newGame.winCheck(matrix2)){    /// Glöm ej att fixa
                     System.out.println("Du vann!");
+                    System.exit(0);
                 }
             }
         };
@@ -48,14 +49,9 @@ public class Board extends JFrame {
             }
         }
 
-
-
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
-
 
     }
     public void setupBoard() {
