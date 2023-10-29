@@ -1,10 +1,29 @@
 package OOP3;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Game {
+public class Game extends MouseAdapter {
+
+    private JButton jb;
+
+    public Game (){
+
+    }
+
+    public Game(JButton jb){
+        this.jb = jb;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        jb.setBackground(Color.BLACK);
+    }
 
     public void generateGame(int[][] matrix) {
         List<Integer> numberList = new ArrayList<>();
@@ -58,7 +77,6 @@ public class Game {
 
         return result;
     }
-
 
     public void runGame (int userInput, int[][] matrix ) {
         Cell gameCell = getIndex(userInput, matrix);

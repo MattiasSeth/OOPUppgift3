@@ -1,5 +1,5 @@
 package OOP3;
-
+/*
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -20,3 +20,4 @@ public class MouseClick extends MouseAdapter {
     }
 
 }
+*/

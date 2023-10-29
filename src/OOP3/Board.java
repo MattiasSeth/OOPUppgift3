@@ -11,11 +11,17 @@ public class Board extends JFrame {
 
 
     public Board() {
+
+        Game newGame = new Game();
+        int[][]matrix = new int[4][4];
+        newGame.generateGame(matrix);
+
         setSize(400,400);
         this.add(boardPanel);
         boardPanel.setLayout(new GridLayout(4,4));
 
         setupBoard();
+        setBoardNumbers(matrix);
 
         setVisible(true);
         setLocationRelativeTo(null);
@@ -25,16 +31,19 @@ public class Board extends JFrame {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 JButton tempButton = new JButton();
-                tempButton.addMouseListener(new MouseClick(tempButton));
+                tempButton.addMouseListener(new Game(tempButton));
                 buttons[i][j] = tempButton;
                 boardPanel.add(buttons[i][j]);
             }
         }
     }
-
-
-
-
+    public void setBoardNumbers (int[][] matrix){
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                buttons[i][j].setText(String.valueOf(matrix[i][j]));
+            }
+        }
+    }
 
     public static void main(String[] args) {
 
