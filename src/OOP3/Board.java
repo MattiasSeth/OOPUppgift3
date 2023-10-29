@@ -17,7 +17,6 @@ public class Board extends JFrame {
 
         setupBoard();
 
-
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -25,11 +24,17 @@ public class Board extends JFrame {
     public void setupBoard() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                buttons[i][j] = new JButton();
+                JButton tempButton = new JButton();
+                tempButton.addMouseListener(new MouseClick(tempButton));
+                buttons[i][j] = tempButton;
                 boardPanel.add(buttons[i][j]);
             }
         }
     }
+
+
+
+
 
     public static void main(String[] args) {
 
