@@ -14,6 +14,11 @@ public class Board extends JFrame {
 
     public Board() {
 
+        int[][] matrix2 = {  { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 },
+                { 13, 14, 0, 15 } };
+
         Game newGame = new Game();
         int[][]matrix = new int[4][4];
         newGame.generateGame(matrix);
@@ -23,13 +28,17 @@ public class Board extends JFrame {
         boardPanel.setLayout(new GridLayout(4,4));
 
         setupBoard();
-        setBoardNumbers(matrix);
+        setBoardNumbers(matrix2);
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 JButton clickedButton = (JButton) e.getSource();
                 int buttonValue = Integer.parseInt(clickedButton.getText());
-                newGame.runGame(buttonValue, matrix, buttons);
+                newGame.runGame(buttonValue, matrix2, buttons);
+
+                if(newGame.winCheck(matrix2)){    /// Glöm ej att fixa
+                    System.out.println("Du vann!");
+                }
             }
         };
 
@@ -39,18 +48,15 @@ public class Board extends JFrame {
             }
         }
 
+
+
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        boolean gameRunner = true;
-        while(gameRunner){
-            boolean check = newGame.winCheck(matrix);
-            if (check){
-                gameRunner = true;
-                System.out.println("DU VANN!");
-            }
-        }
+
+
+
     }
     public void setupBoard() {
         for (int i = 0; i < 4; i++) {
@@ -69,7 +75,14 @@ public class Board extends JFrame {
             }
         }
     }
+    public void winBoardTest(int[][] matrix){
 
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+
+            }
+        }
+    }
     public static void main(String[] args) {
 
         Board b = new Board();
