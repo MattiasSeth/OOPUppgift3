@@ -2,6 +2,8 @@ package OOP3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Board extends JFrame {
 
@@ -22,16 +24,39 @@ public class Board extends JFrame {
 
         setupBoard();
         setBoardNumbers(matrix);
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JButton clickedButton = (JButton) e.getSource();
+                int buttonValue = Integer.parseInt(clickedButton.getText());
+                newGame.runGame(buttonValue, matrix, buttons);
+            }
+        };
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                buttons[i][j].addMouseListener(mouseAdapter);
+            }
+        }
 
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        boolean gameRunner = true;
+        while(gameRunner){
+            boolean check = newGame.winCheck(matrix);
+            if (check){
+                gameRunner = true;
+                System.out.println("DU VANN!");
+            }
+        }
     }
     public void setupBoard() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 JButton tempButton = new JButton();
-                tempButton.addMouseListener(new Game(tempButton));
+                //tempButton.addMouseListener(new MouseClick(tempButton));
                 buttons[i][j] = tempButton;
                 boardPanel.add(buttons[i][j]);
             }

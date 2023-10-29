@@ -8,21 +8,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Game extends MouseAdapter {
+public class Game {
 
-    private JButton jb;
+
 
     public Game (){
 
-    }
-
-    public Game(JButton jb){
-        this.jb = jb;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        jb.setBackground(Color.BLACK);
     }
 
     public void generateGame(int[][] matrix) {
@@ -74,12 +65,12 @@ public class Game extends MouseAdapter {
                 i--;
             }
         }
-
         return result;
     }
 
-    public void runGame (int userInput, int[][] matrix ) {
-        Cell gameCell = getIndex(userInput, matrix);
+    public void runGame (int clickedButton, int[][] matrix, JButton[][] buttons ) {
+
+        Cell gameCell = getIndex(clickedButton, matrix);
         ArrayList<Cell> neighbours = getNeighbours(gameCell);
 
         for (int i=0; i<neighbours.size(); i++) {
@@ -91,7 +82,9 @@ public class Game extends MouseAdapter {
                 int tempY = gameCell.getY();
 
                 matrix[neighbourX][neighbourY] = matrix[tempX][tempY];
+                buttons[neighbourX][neighbourY].setText(String.valueOf(matrix[tempX][tempY]));
                 matrix[tempX][tempY] = 0;
+                buttons[tempX][tempY].setText("0");
             }
         }
 

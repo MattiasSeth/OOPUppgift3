@@ -17,6 +17,8 @@ public class MouseClick extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         jb.setBackground(Color.BLACK);
+        int mouseInt = Integer.parseInt(jb.getText());
+
     }
 
 }
