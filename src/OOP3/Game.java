@@ -15,7 +15,18 @@ public class Game {
     public Game (){
 
     }
+    public void getWinMatrix(int[][] matrix){
+        int[][] matrix2 = {  { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 },
+                { 13, 14, 0, 15 } };
 
+        for (int i=0; i<matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = matrix2[i][j];
+            }
+        }
+    }
     public void generateGame(int[][] matrix) {
         List<Integer> numberList = new ArrayList<>();
 

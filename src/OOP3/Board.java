@@ -30,6 +30,7 @@ public class Board extends JFrame {
             clearBoard();
             Game newGame = new Game();
 
+            //newGame.getWinMatrix(matrix);      // win Matrix
             newGame.generateGame(matrix);
             setupBoard();
             setBoardNumbers(matrix);
