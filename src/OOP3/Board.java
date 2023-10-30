@@ -67,7 +67,8 @@ public class Board extends JFrame {
     public void setBoardNumbers (int[][] matrix){
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                buttons[i][j].setText(String.valueOf(matrix[i][j]));
+                if (matrix[i][j] != 0)
+                    buttons[i][j].setText(String.valueOf(matrix[i][j]));
             }
         }
     }

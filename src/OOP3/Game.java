@@ -84,7 +84,7 @@ public class Game {
                 matrix[neighbourX][neighbourY] = matrix[tempX][tempY];
                 buttons[neighbourX][neighbourY].setText(String.valueOf(matrix[tempX][tempY]));
                 matrix[tempX][tempY] = 0;
-                buttons[tempX][tempY].setText("0");
+                buttons[tempX][tempY].setText("");
             }
         }
 
