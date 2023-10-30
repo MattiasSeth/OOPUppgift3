@@ -99,7 +99,6 @@ public class Game {
                     counter++;
                 }
             }
-
         }
         if (counter == 16 && matrix[3][3] == 0) {
             return true;
