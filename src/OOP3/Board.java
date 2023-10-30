@@ -7,52 +7,70 @@ import java.awt.event.MouseEvent;
 
 public class Board extends JFrame {
 
+    JPanel borderPanel = new JPanel();
+    JPanel newGamePanel = new JPanel();
     JPanel boardPanel = new JPanel();
     JButton[][] buttons = new JButton[4][4];
+
+    JButton newGameButton = new JButton("New Game");
 
 
 
     public Board() {
-
+        // Check win matrix
         int[][] matrix2 = {  { 1, 2, 3, 4 },
-                { 5, 6, 7, 8 },
-                { 9, 10, 11, 12 },
-                { 13, 14, 0, 15 } };
+                             { 5, 6, 7, 8 },
+                             { 9, 10, 11, 12 },
+                             { 13, 14, 0, 15 } };
 
+
+        // Game
         Game newGame = new Game();
         int[][]matrix = new int[4][4];
         newGame.generateGame(matrix);
 
+        // panels
         setSize(400,400);
-        this.add(boardPanel);
+        this.add(borderPanel);
+        borderPanel.setLayout(new BorderLayout());
+        borderPanel.add(newGamePanel, BorderLayout.NORTH);
+        borderPanel.add(boardPanel, BorderLayout.CENTER);
+        newGamePanel.add(newGameButton);
         boardPanel.setLayout(new GridLayout(4,4));
 
         setupBoard();
-        setBoardNumbers(matrix2);
+        setBoardNumbers(matrix);          // matrix2 to check win!
+
+        // buttons and mouseClicked
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JButton clickedButton = (JButton) e.getSource();
-                int buttonValue = Integer.parseInt(clickedButton.getText());
-                newGame.runGame(buttonValue, matrix2, buttons);
+                try {
+                    JButton clickedButton = (JButton) e.getSource();
+                    int buttonValue = Integer.parseInt(clickedButton.getText());
+                    newGame.runGame(buttonValue, matrix, buttons);       // matrix2 to check win
 
-                if(newGame.winCheck(matrix2)){    /// Glöm ej att fixa
-                    System.out.println("Du vann!");
-                    System.exit(0);
+                    if(newGame.winCheck(matrix)){    // matrix2 to check win!
+                        System.out.println("Du vann!");
+                        System.exit(0);
+                    }
+                }catch (NumberFormatException ex){
+
                 }
+
             }
         };
-
+        // add mouseAdapter
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 buttons[i][j].addMouseListener(mouseAdapter);
             }
         }
 
+
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
     }
     public void setupBoard() {
         for (int i = 0; i < 4; i++) {
