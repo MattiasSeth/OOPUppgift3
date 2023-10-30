@@ -14,20 +14,51 @@ public class Board extends JFrame {
 
     JButton newGameButton = new JButton("New Game");
 
-
+    public int[][] matrix;
 
     public Board() {
-        // Check win matrix
+        // Check win matrix and empty matrix
         int[][] matrix2 = {  { 1, 2, 3, 4 },
                              { 5, 6, 7, 8 },
                              { 9, 10, 11, 12 },
                              { 13, 14, 0, 15 } };
+        matrix = new int[4][4];
 
 
         // Game
-        Game newGame = new Game();
-        int[][]matrix = new int[4][4];
-        newGame.generateGame(matrix);
+        newGameButton.addActionListener(e -> {
+            clearBoard();
+            Game newGame = new Game();
+
+            newGame.generateGame(matrix);
+            setupBoard();
+            setBoardNumbers(matrix);
+
+            MouseAdapter mouseAdapter = new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    try {
+                        JButton clickedButton = (JButton) e.getSource();
+                        int buttonValue = Integer.parseInt(clickedButton.getText());
+                        newGame.runGame(buttonValue, matrix, buttons);
+
+                        if(newGame.winCheck(matrix)){
+                            System.out.println("Du vann!");
+                            System.exit(0);
+                        }
+                    }catch (NumberFormatException ignored){
+
+                    }
+                }
+            };
+
+            // add mouseAdapter
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    buttons[i][j].addMouseListener(mouseAdapter);
+                }
+            }
+        });
 
         // panels
         setSize(400,400);
@@ -39,39 +70,14 @@ public class Board extends JFrame {
         boardPanel.setLayout(new GridLayout(4,4));
 
         setupBoard();
-        setBoardNumbers(matrix);          // matrix2 to check win!
-
-        // buttons and mouseClicked
-        MouseAdapter mouseAdapter = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                try {
-                    JButton clickedButton = (JButton) e.getSource();
-                    int buttonValue = Integer.parseInt(clickedButton.getText());
-                    newGame.runGame(buttonValue, matrix, buttons);       // matrix2 to check win
-
-                    if(newGame.winCheck(matrix)){    // matrix2 to check win!
-                        System.out.println("Du vann!");
-                        System.exit(0);
-                    }
-                }catch (NumberFormatException ex){
-
-                }
-
-            }
-        };
-        // add mouseAdapter
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                buttons[i][j].addMouseListener(mouseAdapter);
-            }
-        }
-
-
+        setBoardNumbers(matrix);
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
+
+
+
     public void setupBoard() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -79,6 +85,13 @@ public class Board extends JFrame {
                 //tempButton.addMouseListener(new MouseClick(tempButton));
                 buttons[i][j] = tempButton;
                 boardPanel.add(buttons[i][j]);
+            }
+        }
+    }
+    public void clearBoard (){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                boardPanel.remove(buttons[i][j]);
             }
         }
     }
@@ -90,14 +103,7 @@ public class Board extends JFrame {
             }
         }
     }
-    public void winBoardTest(int[][] matrix){
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-
-            }
-        }
-    }
     public static void main(String[] args) {
 
         Board b = new Board();
