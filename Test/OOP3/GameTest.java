@@ -80,7 +80,6 @@ class GameTest {
         Assertions.assertEquals(expectedY2,testCell2.getY());
         Assertions.assertNotEquals(testCell2.getX(), 22);
         Assertions.assertNotEquals(testCell.getY(),12);
-
     }
 
     @Test
@@ -108,8 +107,6 @@ class GameTest {
 
         assertEquals(neighbour3.getY(),result.get(2).getY());
         assertEquals(neighbour3.getY(),result.get(2).getY());
-
-
 
     }
 }

@@ -20,7 +20,6 @@ public class Board extends JFrame {
         // empty matrix
         matrix = new int[4][4];
 
-
         // Game
         newGameButton.addActionListener(e -> {
             clearBoard();
@@ -72,8 +71,6 @@ public class Board extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
-
-
 
     public void setupBoard() {
         for (int i = 0; i < 4; i++) {

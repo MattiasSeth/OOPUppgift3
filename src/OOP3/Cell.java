@@ -30,6 +30,4 @@ public class Cell {
         return this.y;
     }
 
-
-
 }
