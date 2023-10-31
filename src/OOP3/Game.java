@@ -42,7 +42,6 @@ public class Game {
                 counter++;
             }
         }
-
     }
 
     public Cell getIndex(int userInput, int[][] matrix) {
