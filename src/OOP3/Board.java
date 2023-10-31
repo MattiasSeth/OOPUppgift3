@@ -94,6 +94,10 @@ public class Board extends JFrame {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] != 0)
                     buttons[i][j].setText(String.valueOf(matrix[i][j]));
+                    Font customFont = new Font(buttons[i][j].getFont().getFontName(), Font.BOLD, 26);
+                    buttons[i][j].setFont(customFont);
+                    buttons[i][j].setBackground(Color.DARK_GRAY);
+                    buttons[i][j].setForeground(Color.WHITE);
             }
         }
     }
