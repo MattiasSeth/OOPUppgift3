@@ -52,7 +52,7 @@ class GameTest {
 
         assert !result.isEmpty();
         assertEquals(result.size(),16);
-        assertEquals(result.get(14),14);
-        assertNotEquals(result.get(3),15);
+        assertEquals(result.get(14),expectedResult.get(14));
+        assertNotEquals(result.get(3),expectedResult.get(15));
     }
 }
