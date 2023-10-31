@@ -83,4 +83,33 @@ class GameTest {
 
     }
 
+    @Test
+    public void testGetNeighbours (){
+        int[][] matrix = {  { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 },
+                { 13, 14, 0, 15 } };
+
+        Cell testCell = new Cell(0,1);
+        ArrayList<Cell> result = testGame.getNeighbours(testCell);
+
+        Cell neighbour = new Cell(1,1);
+        Cell neighbour2 = new Cell(0,2);
+        Cell neighbour3 = new Cell(0,0);
+
+        assert !result.isEmpty();
+        assertEquals(result.size(),3);
+
+        assertEquals(neighbour.getX(),result.get(0).getX());
+        assertEquals(neighbour.getY(),result.get(0).getY());
+
+        assertEquals(neighbour2.getY(),result.get(1).getY());
+        assertEquals(neighbour2.getY(),result.get(1).getY());
+
+        assertEquals(neighbour3.getY(),result.get(2).getY());
+        assertEquals(neighbour3.getY(),result.get(2).getY());
+
+
+
+    }
 }
