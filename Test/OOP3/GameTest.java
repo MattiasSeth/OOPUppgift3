@@ -55,4 +55,32 @@ class GameTest {
         assertEquals(result.get(14),expectedResult.get(14));
         assertNotEquals(result.get(3),expectedResult.get(15));
     }
+
+    @Test
+    public void testGetIndex(){
+        int[][] matrix = {  { 7, 2, 3, 4 },
+                { 5, 6, 2, 81 },
+                { 9, 10, 111, 12 },
+                { 13, 14, 10, 15 } };
+
+        int input = 2;
+        int input2 = 111;
+
+        Cell testCell = testGame.getIndex(input,matrix);
+        Cell testCell2 = testGame.getIndex(input2,matrix);
+
+        int expectedX = 0;
+        int expectedY = 1;
+        int expectedX2 = 2;
+        int expectedY2 = 2;
+
+        Assertions.assertEquals(expectedX,testCell.getX());
+        Assertions.assertEquals(expectedY, testCell.getY());
+        Assertions.assertEquals(expectedX2,testCell2.getX());
+        Assertions.assertEquals(expectedY2,testCell2.getY());
+        Assertions.assertNotEquals(testCell2.getX(), 22);
+        Assertions.assertNotEquals(testCell.getY(),12);
+
+    }
+
 }
